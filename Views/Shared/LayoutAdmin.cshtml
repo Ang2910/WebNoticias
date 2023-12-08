@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Administrador</title>
+    <link rel="stylesheet" href="~/administrador/estilosadmin.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+
+            nav a {
+                color: #333;
+                text-decoration: none;
+                padding: 10px;
+                margin: 0 10px;
+            }
+
+                nav a:hover {
+                    background-color: #ddd;
+                }
+
+        section {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Menú de Administrador</h1>
+    </header>
+
+    <nav>
+        <a href="~/Admin">Inicio</a>
+        <a href="~/Admin/Noticias">Administrar Noticias</a>
+        <a href="~/Admin/Categorias">Administrar Categorías</a>
+    </nav>
+    <main>
+        <h2>@ViewBag.Title</h2>
+        @RenderBody()
+    </main>
+</body>
+</html>

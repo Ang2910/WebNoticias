@@ -1,0 +1,63 @@
+﻿@inject WebNoticias.Repositories.CategoriasRepository repos;
+@{
+    var datos = repos.GetAll().Select(x => x.Nombre);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+    <title>JORANGEL</title> 
+    <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
+</head>  
+<body>   
+    <div class="Encabezado"> 
+        <h2>Welcome!</h2>
+        <a href="#" onclick="confirmLogout()" class="btn-home">Cerrar Sesión</a> 
+
+        <script>
+            function confirmLogout() {
+                var result = confirm('¿Está seguro de cerrar sesión?');
+                if (result) {
+                    window.location.href = '@Url.Action("LogOut", "Home")';
+                }
+            }
+        </script>
+
+        <hr>
+        <header> 
+            <nav id="navegar"> 
+                <img src="~/logos/letra-w.png" alt="Inicio"> 
+                <a  href="~/Home/Index" >TODAS</a>   
+                @foreach(var item in datos) 
+                {   
+                  <a href="~/Home/Index/@item.Replace(" ","-")" >@item</a>  
+                }   
+            </nav>
+           
+   
+        </header>
+        <div class="container1">
+            <form  method="get">
+                <input type="text" id="filtroInput" placeholder="Buscar..."> 
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> 
+            </form>
+           
+        </div>             
+        <h1>JORANGEL</h1>
+    </div>
+   
+    <main>
+    @RenderBody()   
+    </main> 
+    <div class="ver-mas">
+        <a href="#">
+            Ver más
+            <i class="fas fa-arrow-down"></i>
+        </a>
+    </div>
+ </body>
+ </html>

@@ -1,0 +1,100 @@
+﻿@using WebNoticias.Models.Entities
+@model Categorias
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<style>
+    form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 15px;
+        color: #555;
+    }
+
+    #error {
+        color: #d9534f;
+        margin-bottom: 15px;
+    }
+
+    .botones {
+        text-align: right;
+    }
+
+    input[type="submit"], .btn {
+        background-color: #d9534f;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn {
+        background-color: #777;
+        margin-left: 10px;
+    }
+        /* Hover y Focus para los botones */
+        input[type="submit"]:hover, .btn:hover,
+        input[type="submit"]:focus, .btn:focus {
+            background-color: #c9302c;
+            outline: none;
+        }
+    /* Estilos adicionales para el mensaje de mover noticias */
+    #moverNoticias {
+        margin-top: 15px;
+    }
+
+    #cmbCategoriaMover {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-top: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+
+
+
+<form id="eliminarCategoriaForm" action="~/Admin/Categorias/Eliminar" method="post">
+    <h3>Eliminar sección</h3>
+
+    <input type="hidden" asp-for="Id" />
+
+    <label>Por favor confirme la eliminación de la sección llamada 
+    <span id="nomCategoria">@Model.Nombre</span></label> 
+
+    @* MOSTRAR EN CASO DE QUE LA SECCIÓN YA TENGA NOTICIAS *@
+    <p id="moverNoticias">
+        @if(Model.Noticias.Count>0)
+        {
+            <p>La sección a eliminar tiene noticias asignadas.</p>
+            <p>Se eliminaran todas las noticias pertenecientes a la categoria @Model.Nombre</p>
+        }
+
+    </p>
+
+    <div id="error" class="error">
+        @Html.ValidationSummary(true)
+    </div>
+
+    <div class="botones">
+        <input type="submit" value="Eliminar" id="btnEliminar"/>
+        <a class="btn" href="~/Admin/Categorias">Cancelar</a>
+    </div>
+
+</form>

@@ -1,0 +1,104 @@
+﻿@using WebNoticias.Areas.admin.Models;
+@model CategoriaViewModel
+
+@{
+    Layout = "LayoutAdmin";
+} 
+
+<style>
+    /* Estilos para la administración de categorías */
+    .categorias-section {
+        background-color: #3498db;
+        color: #fff;
+        text-align: center;
+        padding: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+   
+    th {   
+        background-color: gray;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 15px;
+        text-align:center;
+    }
+
+        a.editar {
+            background-color: #f39c12; /* Amarillo */
+        }
+
+        a.eliminar {
+            background-color: #2c3e50; /* Negro o Azul oscuro */
+        }
+
+        a.crear-categoria {
+            background-color: #27ae60; /* Verde */
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+    /* ... (otros estilos) ... */
+</style>
+
+<!-- Sección de administración de categorías -->
+<div class="categorias-section">
+    <h2>ADMINISTRAR CATEGORÍAS</h2>
+    <p>
+        <a href="~/Admin/Categorias/Agregar" class="crear-categoria">Crear Nueva Categoría</a>
+    </p>
+
+    <table width="100">
+        <thead>
+            <tr>
+               
+                <th>Nombre</th>
+                <th>NumNoticias</th>
+                <th colspan="2">Opciones de administrador</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Categorias)
+            {
+                <tr>
+                <td>@item.Nombre</td>
+                <td>
+                    @item.TotalNoticias
+                </td>
+                <td></td>
+                <td colspan="2" class="enlaces">
+                    <a href="~/Admin/Categorias/Editar/@item.Id" class="editar">Editar</a>
+                    <a href="~/Admin/Categorias/Eliminar/@item.Id" class="eliminar">Eliminar</a>
+                </td>
+            </tr>
+            } 
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,90 @@
+﻿@model WebNoticias.Areas.admin.Models.AdminAgregarCategoriaModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+
+    .categorias-section {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        border-radius: 8px;
+    }
+
+    .title {
+        color: #333;
+        font-family: Algerian;
+        text-align: center;
+        font-size: 35px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .text-danger {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        text-align: center;
+    }
+
+    .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+    .error {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+</style>
+
+
+<div class="categorias-section">
+    <h2 class="title">AGREGAR CATEGORÍA</h2>
+
+    <form method="post" action="~/Admin/Categorias/Agregar" class="category-form">
+        <div class="form-group">
+            <label for="Nombre" class="label">Nombre:</label>
+            <input type="text" id="Nombre" name="Nombre" class="input" required asp-for="Nombre" />
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Nombre)</span>
+        </div>
+
+        <div class="buttons">
+            <div id="error" class="error">@Html.ValidationSummary(true)</div>
+            <input type="submit" value="Agregar" class="btn" />
+            <a class="btn" href="~/Admin/Categorias">Volver</a>
+        </div>
+    </form>
+</div>

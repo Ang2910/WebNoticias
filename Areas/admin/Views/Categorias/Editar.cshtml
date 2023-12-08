@@ -1,0 +1,94 @@
+﻿@using WebNoticias.Models.Entities;
+@model Categorias
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+    body, h1, h2, h3, p, label, input {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Estilos del formulario */
+    form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .error {
+        color: #d9534f;
+        margin-bottom: 15px;
+    }
+
+    .botones {
+        text-align: right;
+    }
+
+    input[type="submit"], .btn {
+        background-color: #5bc0de;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn {
+        background-color: #777;
+        margin-left: 10px;
+    }
+
+        /* Hover y Focus para los botones */
+        input[type="submit"]:hover, .btn:hover,
+        input[type="submit"]:focus, .btn:focus {
+            background-color: #31b0d5;
+            outline: none;
+        }
+</style>
+
+<form method="post" action="~/Admin/Categorias/Editar">
+    <h3>Editar una sección</h3>
+
+    <input type="hidden" asp-for="Id" />
+    <label>Nombre de la sección:</label>
+    <input type="text" required asp-for="Nombre" />
+
+    <div id="error" class="error">
+        @Html.ValidationSummary(true)
+    </div>
+
+    <div class="botones">
+        <input type="submit" value="Guardar" />
+        <a class="btn" href="~/Admin/Categorias">Cancelar</a>
+    </div>
+</form>

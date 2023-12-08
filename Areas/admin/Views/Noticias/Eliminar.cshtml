@@ -1,0 +1,121 @@
+﻿@model WebNoticias.Models.Entities.Noticias
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .eliminar-noticia {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #dc3545;
+    }
+
+    .pregunta {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #495057;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .error {
+        color: #dc3545;
+        margin-bottom: 10px;
+    }
+
+    .botones {
+        margin-top: 20px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border: 1px solid #dc3545;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border: 1px solid #c82333;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: 1px solid #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border: 1px solid #5a6268;
+        }
+
+</style>
+
+<div class="eliminar-noticia">
+    <form method="post" action="~/Admin/Noticias/Eliminar">
+        <h1 class="text-center">Eliminar Noticia Del Periodico</h1>
+
+        <input type="hidden" asp-for="NoticiaId" />
+        <div class="pregunta mb-3">¿Desea eliminar la noticia?</div>
+
+        <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input type="text" id="titulo" class="form-control" required asp-for="Titulo">
+        </div>
+
+        <div class="error">@Html.ValidationSummary(true)</div>
+
+        <div class="botones text-center">
+            <input type="submit" class="btn btn-danger" value="Si" />
+            <a href="~/Admin/Noticias" class="btn btn-secondary">No</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function previewImagen() {
+        const inputImagen = document.getElementById('imagen');
+        const imagenPreview = document.getElementById('imagen-preview');
+
+        const archivoImagen = inputImagen.files[0];
+
+        if (archivoImagen) {
+            const lector = new FileReader();
+
+            lector.onload = function (e) {
+                imagenPreview.src = e.target.result;
+                imagenPreview.style.display = 'block';
+            };
+
+            lector.readAsDataURL(archivoImagen);
+        } else {
+            imagenPreview.src = '#';
+            imagenPreview.style.display = 'none';
+        }
+    }
+</script>

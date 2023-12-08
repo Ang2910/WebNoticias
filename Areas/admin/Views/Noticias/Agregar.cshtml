@@ -1,0 +1,170 @@
+﻿@using WebNoticias.Areas.admin.Models;
+@model AdminAgregarViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Noticia</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .imagen {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+
+        .botones {
+            text-align: center;
+        }
+
+        #error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        #btnAgregar {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .btn {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+   
+
+    <form method="post" action="~/Admin/Noticias/Agregar" enctype="multipart/form-data" >
+        <h1>Agregar Noticia</h1>
+
+        <section class="formCaptura">
+
+            <label>Titulo:</label>
+            <input type="text" maxlength="100" id="txtTitulo" placeholder="Titulo de la Noticia" required asp-for="Noticia.Titulo"/>
+  
+
+            <label>Categoria:</label>
+            <select id="cmbCategoria" class="q" required asp-for="Noticia.IdCategoria" asp-items="@(new SelectList(Model.Categorias, "Id", "Nombre"))">
+                <!-- Opciones de categorías aquí -->
+            </select>
+                    
+            <label>Contenido:</label>
+            <textarea rows="8" id="txtContenido" placeholder="Contenido" required asp-for="Noticia.Contenido"></textarea>
+
+            <label>Caption:</label>
+            <input type="text" id="txtCaption" placeholder="Caption de la Noticia" required asp-for="Noticia.Caption"/>   
+
+            <span>
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" accept="image/png" onchange="previewImagen()" asp-for="Archivo">
+                <img id="imagen-preview" src="~/logos/letra-w.png">
+            </span> 
+
+            @Html.ValidationSummary(true)
+             
+        </section>
+
+        <div class="botones">
+           
+            <input type="submit" value="Agregar" id="btnAgregar" />
+            <a class="btn" href="~/Admin/Noticias">Volver</a>
+        </div> 
+
+    </form>
+
+      
+
+</body>
+<script>
+
+    function previewImagen() {
+        const inputImagen = document.getElementById('imagen');
+        const imagenPreview = document.getElementById('imagen-preview');
+
+        const archivoImagen = inputImagen.files[0];
+
+        if (archivoImagen) {
+            const lector = new FileReader();
+
+            lector.onload = function (e) {
+                imagenPreview.src = e.target.result;
+                imagenPreview.style.display = 'block';
+            };
+
+            lector.readAsDataURL(archivoImagen);
+        } else {
+            imagenPreview.src = '#';
+            imagenPreview.style.display = 'none';
+        }
+    }
+</script>
+
+
+</html>
+
+
+

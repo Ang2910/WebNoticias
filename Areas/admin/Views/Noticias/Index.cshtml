@@ -1,0 +1,151 @@
+﻿@using WebNoticias.Areas.admin.Models;
+@model AdminNoticiasViewModel
+
+@{
+    Layout = "LayoutAdmin";
+}
+
+<style>
+    h1 {
+        color: #333;
+        font-family: Algerian;
+        text-align: center;
+        font-size: 35px;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    a {
+        text-decoration: blink;
+        margin-right: 15px; /* Reducido el margen entre opciones del administrador */
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        vertical-align: central; /* Alineación vertical al centro */
+        text-align: center;
+    }
+
+        a.editar {
+            color: #f39c12; /* Amarillo */
+            border: 1px solid #f39c12;
+        }
+
+        a.eliminar {
+            color: #2c3e50; /* Negro o Azul oscuro */
+            border: 1px solid #2c3e50;
+        }
+
+        a.ver-detalles {
+            color: #27ae60; /* Verde */
+            border: 1px solid #27ae60;
+            text-align: center;
+            width: 50px;
+        }
+
+        a.crear-noticia {
+            background-color: #3498db; /* Azul */
+            color: #fff; /* Blanco */
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+    .enlaces {
+        white-space: nowrap; /* Evitar el salto de línea en la celda */
+    }
+
+        .enlaces a {
+            display: inline-block;
+            width: 50px; /* Ancho fijo para los enlaces */
+
+            text-align: center;
+            margin-right: 25px; /* Reducir el margen entre opciones de administrador */
+        }
+
+    /* Ajustar el ancho del texto según sea necesario */
+    td:not(.enlaces) {
+        max-width: 300px; /* Ajusta el ancho máximo según sea necesario */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<h1>LISTA DE NOTICIAS</h1>
+
+<p>
+    <a href="~/Admin/Noticias/Agregar" class="crear-noticia">Crear Nueva Noticia</a>
+</p>
+
+<form method="get" action="~/Admin/Noticias/Index">
+    <label for="cmbCategoria">Filtrar por Categoría:</label>
+    <select id="cmbCategoria" name="categoria" onchange="this.form.submit()">
+        <option value="">Todas</option>
+        @foreach (var categoria in Model.Categorias)
+        {
+            <option value="@categoria" @(categoria ==  Context.Request.Query["categoria"] ? "selected" : "")>@categoria</option>
+        }
+    </select>  
+</form>
+
+<table width="100">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+            <th>Visitas</th>
+            <th>Caption</th>
+            <th colspan="3">Opciones de administrador</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Noticias)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Fecha.ToShortDateString()</td>
+                <td>@item.Categoria</td>
+                <td>@item.Visitas</td>
+                <td>@item.Caption</td>
+                <td colspan="2" width="150" class="enlaces">
+                    <a href="~/Admin/Noticias/Editar/@(item.Id)" class="editar">Editar</a>
+                    <a href="~/Admin/Noticias/Eliminar/@(item.Id)" class="eliminar">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
