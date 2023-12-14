@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "LayoutPrueba";
+}
+ 
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    section#contacto {
+        padding: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #3498db;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #555;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+        color: #333;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: border-color 0.3s ease;
+    }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3498db;
+        }
+
+    button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+    h2 {
+        font-size: 1.8em;
+        margin-top: 30px;
+        color: #3498db;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    li {
+        margin: 0 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+    }
+
+        a:hover {
+            color: #3498db;
+        }
+</style>
+
+<section id="contacto">
+    <h1>Contacto</h1>
+    <p>Estamos aquí para ayudarte. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros. Puedes utilizar el formulario de contacto a continuación o encontrarnos en nuestras redes sociales.</p>
+
+    <form action="/enviar-mensaje" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar Mensaje</button>
+    </form>
+
+    <h2>Encuéntranos en Redes Sociales</h2>
+    <ul>
+        <li><a href="https://www.facebook.com/jorangel" target="_blank">Facebook</a></li>
+        <li><a href="https://twitter.com/jorangel" target="_blank">Twitter</a></li>
+        <li><a href="https://www.instagram.com/jorangel/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/jorangel/" target="_blank">LinkedIn</a></li>
+    </ul>
+</section>
+ 
+

@@ -60,8 +60,9 @@ namespace WebNoticias.Controllers
                 ListaNoticias = listaNoti,
                 Visitadas = NoticiasRepository.GetMasVisitadas(),
                 MostrarNoticiasVisitadas = string.IsNullOrEmpty(id)
-
             };
+           
+
             return View(vm);
         }
         //[HttpGet]
@@ -161,6 +162,14 @@ namespace WebNoticias.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View(); 
         }
         [HttpPost] 
         public IActionResult Login(LoginViewModel vm)

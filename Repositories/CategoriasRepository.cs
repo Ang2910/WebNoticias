@@ -19,7 +19,7 @@ namespace WebNoticias.Repositories
             }
             else
             {
-                // Puedes lanzar una excepción, devolver una lista vacía u otro comportamiento según tus necesidades.
+               
                 return Enumerable.Empty<Categorias>();
             }
         }

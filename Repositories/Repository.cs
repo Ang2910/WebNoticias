@@ -23,24 +23,23 @@ namespace WebNoticias.Repositories
         {
             if (id is uint uintId)   
             {
-                // Convertir uint a int antes de buscar
+               
                 return Context.Find<T>((int)uintId);
             }
 
-            // Manejar otros casos si es necesario...
+          
 
             return null;
         }
         public virtual void Insert(Noticias entity)
         {
-            // Asegúrate de que la propiedad 'Imagen' tenga un valor predeterminado
-            // o asigna un valor por defecto si es posible.
+            
             if (entity.Imagen == null) 
             {
-                entity.Imagen = "/uploads/no_photo.png"; // Asigna la ruta de la imagen predeterminada
+                entity.Imagen = "/uploads/no_photo.png"; 
             }
 
-            // Verifica que la categoría exista antes de intentar agregar la noticia
+       
             var categoriaExistente = Context.Categorias.Find(entity.IdCategoria);
             if (categoriaExistente != null)
             {
@@ -49,8 +48,7 @@ namespace WebNoticias.Repositories
             }
             else
             {
-                // Manejo de error: La categoría no existe
-                // Puedes lanzar una excepción, loggear un mensaje de error, etc.
+                
             }
         }
 

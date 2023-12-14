@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <title>JORANGEL</title>
 
     <style>
         /* Estilos para la sección de navegación */
         nav#menu {
-            display:flex;
-            flex-flow:row;
+            display: flex;
+            flex-flow: row;
             background-color: #2fb4cc;
             text-align: right; /* Alinea el texto a la derecha */
         }
@@ -28,50 +28,49 @@
                 justify-content: flex-end; /* Alinea los elementos al final del contenedor */
             }
 
-            ul .Bienvenido{
-               
-               margin-left:-5%;
-                 /* Alinea los elementos al final del contenedor */
-            }
+        ul .Bienvenido {
+            margin-left: -5%;
+            /* Alinea los elementos al final del contenedor */
+        }
 
         ul .Nosotros {
             margin-right: -100px;
             /* Alinea los elementos al final del contenedor */
         }
 
-        ul .Contacto { 
+        ul .Contacto {
             margin-right: -100px;
             /* Alinea los elementos al final del contenedor */
         }
 
-            nav#menu li {
-                margin-left: 20px; /* Mueve los elementos a la derecha */
+        nav#menu li {
+            margin-left: 20px; /* Mueve los elementos a la derecha */
+        }
+
+        nav#menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+            nav#menu a:hover {
+                color: #ff8c00; /* Color al pasar el mouse */
             }
 
-            nav#menu a {
-                text-decoration: none;
+            /* Estilos para el botón de cerrar sesión */
+            nav#menu a.logout {
+                background-color: #ff8c00; /* Color de fondo para el botón de cerrar sesión */
                 color: #fff;
-                font-size: 18px;
-                font-weight: bold;
-                transition: color 0.3s ease;
+                padding: 8px 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
             }
 
-                nav#menu a:hover {
-                    color: #ff8c00; /* Color al pasar el mouse */
+                nav#menu a.logout:hover {
+                    background-color: #e07b00; /* Color de fondo al pasar el mouse */
                 }
-
-                /* Estilos para el botón de cerrar sesión */
-                nav#menu a.logout {
-                    background-color: #ff8c00; /* Color de fondo para el botón de cerrar sesión */
-                    color: #fff;
-                    padding: 8px 15px;
-                    border-radius: 5px;
-                    transition: background-color 0.3s ease;
-                }
-
-                    nav#menu a.logout:hover {
-                        background-color: #e07b00; /* Color de fondo al pasar el mouse */
-                    }
 
         /* Estilos para las nuevas secciones */
 
@@ -190,50 +189,48 @@
                             color: #ff8c00;
                         }
 
-       
-
     </style>
 
 </head>
 
 <body>
     @*<script>
-        // Función para manejar el desplazamiento suave
-        function scrollToSection(sectionId) {
-            var section = document.getElementById(sectionId);
-            if (section) {
-                // Usa el método scrollIntoView con el comportamiento 'smooth'
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        } 
+    // Función para manejar el desplazamiento suave
+    function scrollToSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (section) {
+    // Usa el método scrollIntoView con el comportamiento 'smooth'
+    section.scrollIntoView({ behavior: 'smooth' });
+    }
+    }
 
-        // Añade un evento de clic a los elementos del menú
-        document.addEventListener('DOMContentLoaded', function () {
-            var menuItems = document.querySelectorAll('#menu a');
-            menuItems.forEach(function (item) {
-                item.addEventListener('click', function (e) {
-                    // Evita el comportamiento predeterminado del enlace
-                    e.preventDefault();
+    // Añade un evento de clic a los elementos del menú
+    document.addEventListener('DOMContentLoaded', function () {
+    var menuItems = document.querySelectorAll('#menu a');
+    menuItems.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+    // Evita el comportamiento predeterminado del enlace
+    e.preventDefault();
 
-                    // Obtiene el ID de la sección a la que se debe desplazar
-                    var sectionId = item.getAttribute('href').substring(1);
+    // Obtiene el ID de la sección a la que se debe desplazar
+    var sectionId = item.getAttribute('href').substring(1);
 
-                    // Llama a la función de desplazamiento suave
-                    scrollToSection(sectionId);
-                });
-            });
-        });
+    // Llama a la función de desplazamiento suave
+    scrollToSection(sectionId);
+    });
+    });
+    });
     </script>*@
     <div class="Encabezado">
-        <nav id="menu">  
+        <nav id="menu">
             <ul id="Welcome">
-                <li ><a class="Bienvenido"></a></li>
-            </ul> 
+                <li><a class="Bienvenido"></a></li>
+            </ul>
             <ul>
                 <li><a href="#nosotros" class="Nosotros">About</a></li>
-                <li><a href="#contacto" class="Contacto">Contact</a></li> 
+                <li><a href="#contacto" class="Contacto">Contact</a></li>
                 <li><a href="#" onclick="confirmLogout()">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a></li>
-              
+
             </ul>
         </nav>
         <script>
@@ -254,61 +251,12 @@
                     <a href="~/Home/Index/@item.Replace(" ","-")">@item</a>
                 }
             </nav>
-        </header> 
+        </header>
         <h1>JORANGEL</h1>
     </div>
-    
+
+
     <main>
         @RenderBody()
     </main>
-    <section id="nosotros" class="sobre-nosotros">
-        <h2>Sobre Nosotros</h2>
-        <p>En Jorangel, nos dedicamos a proporcionar noticias de calidad, información relevante y contenido valioso para nuestra audiencia. Fundado en 2023, hemos crecido y evolucionado para convertirnos en una fuente confiable de noticias para miles de lectores.</p>
-
-        <h3>Nuestra Misión</h3>
-        <p>Nuestra misión es informar, educar y entretener. Buscamos ofrecer noticias precisas y objetivas en diversos temas, desde actualidad y política hasta cultura y entretenimiento. Estamos comprometidos a ser un recurso imparcial y respetado para la comunidad.</p>
-
-        <h3>Nuestro Equipo</h3>
-        <p>Detrás de cada noticia, hay un equipo dedicado de periodistas, editores y profesionales comprometidos con la integridad periodística. Con experiencia en diversas áreas, trabajamos juntos para brindar una cobertura completa y equilibrada.</p>
-
-        <h3>Contáctanos</h3>
-        <p>Valoramos la retroalimentación de nuestros lectores. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros. Estamos aquí para servirte y proporcionar la mejor experiencia de lectura posible.</p>
-    </section>
-    <section id="contacto" class="contact-section">
-        <div class="container">
-            <h2>Contacto</h2>
-            <p>Estamos aquí para ayudarte. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros. Puedes utilizar el formulario de contacto a continuación o encontrarnos en nuestras redes sociales.</p>
-
-            <form action="/enviar-mensaje" method="post">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-                <button type="submit">Enviar Mensaje</button>
-            </form>
-
-            <div class="social-media">
-                <h3>Encuéntranos en Redes Sociales</h3>
-                <ul>
-                    <li><a href="https://www.facebook.com/jorangel" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="https://twitter.com/jorangel" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="https://www.instagram.com/jorangel/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="https://www.linkedin.com/company/jorangel/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                </ul>
-            </div> 
-        </div>
-    </section>
-    <div class="ver-mas">
-        <a href="#">
-            Ver más
-            <i class="fas fa-arrow-down"></i>
-        </a>
-    </div>
-</body>
-
-</html>
+    </body>

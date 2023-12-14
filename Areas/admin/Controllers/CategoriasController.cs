@@ -37,49 +37,33 @@ namespace WebNoticias.Areas.admin.Controllers
         {
             return View();
         }
-
+         
         [HttpPost]
         public IActionResult Agregar(AdminAgregarCategoriaModel vm)
-        {
-            if (ModelState.IsValid)
+        {     
+            if (string.IsNullOrWhiteSpace(vm.Nombre))
             {
-                if (string.IsNullOrWhiteSpace(vm.Nombre))
-                {
-                    ModelState.AddModelError(nameof(vm.Nombre), "Escribir el nombre de la seccion.");
-                }
-                if (string.IsNullOrWhiteSpace(vm.Nombre))
-                {
-                    ModelState.AddModelError(nameof(vm.Nombre), "El nombre de la categoría es obligatorio.");
-                }
-                if (vm.Nombre.Contains("PalabraNoPermitida"))
-                {
-                    ModelState.AddModelError(nameof(vm.Nombre), "El nombre contiene palabras no permitidas.");
-                }
-                if (vm.Nombre.Length > 50)
-                {
-                    ModelState.AddModelError(nameof(vm.Nombre), "El nombre de la categoría no puede tener más de 50 caracteres.");
-                }
-
-
-                bool seccionExistente = Repository.GetAll().Any(x => x.Nombre == vm.Nombre);
-
-                if (!seccionExistente)
-                {
-
-                    var nuevaSeccion = new Categorias
-                    {
-                        Nombre = vm.Nombre ?? ""
-                    };
-
-                    Repository.Insert(nuevaSeccion);
-
-                    return RedirectToAction("Index");
-                }
-
+                ModelState.AddModelError("", "Escribe el nombre de la categoria");
+            }
+            else if (vm.Nombre.Length > 50)
+            {
+                ModelState.AddModelError(nameof(vm.Nombre), "El nombre de la categoría no puede tener más de 50 caracteres.");
+            }
+            if (Repository.GetAll().Any(x => x.Nombre == vm.Nombre))
+            {
                 ModelState.AddModelError(nameof(vm.Nombre), "Ya existe una sección con este nombre.");
             }
-
+            if (ModelState.IsValid)
+            {
+                var nuevaSeccion = new Categorias
+                {
+                    Nombre = vm.Nombre ?? ""
+                };
+                Repository.Insert(nuevaSeccion);
+                return RedirectToAction("Index");
+            }
             return View(vm);
+
         }
 
         public IActionResult Editar(uint id)

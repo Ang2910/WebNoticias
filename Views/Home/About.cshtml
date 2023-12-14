@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "LayoutPrueba";
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: #3498db;
+        color: #fff;
+        padding: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+        margin-top: 30px;
+        color: #3498db;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    h2 + p {
+        margin-top: 10px;
+    }
+
+
+</style>
+
+<header>
+    <h1>Sobre Nosotros</h1>
+    <p>En Jorangel, nos dedicamos a proporcionar noticias de calidad, información relevante y contenido valioso para nuestra audiencia. Fundado en [año de fundación], hemos crecido y evolucionado para convertirnos en una fuente confiable de noticias para miles de lectores.</p>
+
+    <h2>Nuestra Misión</h2>
+    <p>Nuestra misión es informar, educar y entretener. Buscamos ofrecer noticias precisas y objetivas en diversos temas, desde actualidad y política hasta cultura y entretenimiento. Estamos comprometidos a ser un recurso imparcial y respetado para la comunidad.</p>
+
+    <h2>Nuestro Equipo</h2>
+    <p>Detrás de cada noticia, hay un equipo dedicado de periodistas, editores y profesionales comprometidos con la integridad periodística. Con experiencia en diversas áreas, trabajamos juntos para brindar una cobertura completa y equilibrada.</p>
+
+    <h2>Contáctanos</h2>
+    <p>Valoramos la retroalimentación de nuestros lectores. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros. Estamos aquí para servirte y proporcionar la mejor experiencia de lectura posible.</p>
+</header>
+
+
+<section id="contacto">
+    <h1>Contacto</h1>
+    <p>Estamos aquí para ayudarte. Si tienes preguntas, comentarios o sugerencias, no dudes en ponerte en contacto con nosotros. Puedes utilizar el formulario de contacto a continuación o encontrarnos en nuestras redes sociales.</p>
+
+    <form action="/enviar-mensaje" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar Mensaje</button>
+    </form>
+
+    <h2>Encuéntranos en Redes Sociales</h2>
+    <ul>
+        <li><a href="https://www.facebook.com/jorangel" target="_blank">Facebook</a></li>
+        <li><a href="https://twitter.com/jorangel" target="_blank">Twitter</a></li>
+        <li><a href="https://www.instagram.com/jorangel/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/jorangel/" target="_blank">LinkedIn</a></li>
+    </ul>
+</section>

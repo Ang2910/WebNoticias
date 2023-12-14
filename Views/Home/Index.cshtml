@@ -1,6 +1,7 @@
 ﻿@model WebNoticias.Models.ViewModels.NoticiaViewModel
 @{
     Layout = "Layout";
+
 }
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -39,10 +40,48 @@
             color: #333;
         }
 
+
+    section {
+        padding: 50px;
+        text-align: center;
+        background-color: #fff; /* Color de fondo de la sección */
+        border-radius: 10px; /* Bordes redondeados para la sección */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para la sección */
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #3498db; /* Color del título */
+    }
+
+    p {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        background-color: #e74c3c; /* Color de fondo del botón */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .cta-button:hover {
+            background-color: #c0392b; /* Color de fondo al pasar el mouse */
+        }
+
+    
+
 </style>
 
-
-
+  
+  
 
 <div class="container">
     @foreach (var n in Model.ListaNoticias)

@@ -8,6 +8,9 @@ namespace WebNoticias.Models.ViewModels
         public IEnumerable<NoticiasModel> ListaNoticias { get; set; } = null!;
         public IEnumerable<Noticias> Visitadas { get; set; } = null!;
         public bool MostrarNoticiasVisitadas { get; set; } = false;
+       
+
+        
     }
 
     public class NoticiasModel

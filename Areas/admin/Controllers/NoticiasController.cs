@@ -31,28 +31,46 @@ namespace WebNoticias.Areas.admin.Controllers
         // Dentro de NoticiasController en NoticiasController.cs
         public IActionResult Index(string categoria)
         {
-            AdminNoticiasViewModel vm = new AdminNoticiasViewModel();
+            AdminNoticiasViewModel vm = new();
+            if (string.IsNullOrWhiteSpace(categoria) || categoria == "0")
+            {
+                // Obtener todas las categorías si no hay categoria seleccionada 
+                vm.Categorias = CategoriasRepository.GetAll().Select(x => x.Nombre).AsEnumerable();
 
-            // Obtener todas las categorías
-            vm.Categorias = CategoriasRepository.GetAll().Select(c => c.Nombre);
+                // Mostrar todas las noticias
+                vm.Noticias = NoticiasRepository.GetAll()
+                              .Select(x => new AdminNotiModel
+                              {
+                                  Id = (uint)x.NoticiaId,
+                                  Categoria = x.IdCategoriaNavigation.Nombre,
+                                  Titulo = x.Titulo,
+                                  Visitas = x.Vistas,
+                                  Fecha = x.Fecha,
+                                  Caption = x.Caption ?? ""
+                              });
+            }
+            else
+            {
+                // Obtener todas las categorías
+                vm.Categorias = CategoriasRepository.GetAll().Select(c => c.Nombre);
 
-            // Filtrar noticias por categoría si se especifica
-            vm.Noticias = NoticiasRepository.GetNoticiasPorCategorias(categoria)
-                          .Select(x => new AdminNotiModel
-                          {
-                              Id = (uint)x.NoticiaId,
-                              Categoria = x.IdCategoriaNavigation.Nombre,
-                              Titulo = x.Titulo,
-                              Visitas = x.Vistas,
-                              Fecha = x.Fecha,
-                              Caption = x.Caption ?? ""
-                          });
+                // Filtrar noticias por categoría si se especifica
+                vm.Noticias = NoticiasRepository.GetNoticiasPorCategorias(categoria)
+                              .Select(x => new AdminNotiModel
+                              {
+                                  Id = (uint)x.NoticiaId,
+                                  Categoria = x.IdCategoriaNavigation.Nombre,
+                                  Titulo = x.Titulo,
+                                  Visitas = x.Vistas,
+                                  Fecha = x.Fecha,
+                                  Caption = x.Caption ?? ""
+                              });
+
+            }
 
             return View(vm);
         }
-
-
-        public IActionResult Agregar()
+            public IActionResult Agregar()
         {
             AdminAgregarViewModel vm = new(); 
             vm.Categorias = CategoriasRepository.GetAll().OrderBy(y => y.Nombre);
